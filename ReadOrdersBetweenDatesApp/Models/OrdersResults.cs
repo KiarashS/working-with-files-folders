@@ -14,7 +14,7 @@ public class OrdersResults : INotifyPropertyChanged
 
     public DateOnly ShippedDate { get; set; }
 
-    public string? ShipAddress { get; set; }
+    public string ShipAddress { get; set; }
 
     public string? ShipCity { get; set; }
 
@@ -36,4 +36,11 @@ public class OrdersResults : INotifyPropertyChanged
         OnPropertyChanged(propertyName);
         return true;
     }
+}
+
+public class OrderResultItem
+{
+    public bool Process { get; set; } 
+
+    public OrderResult Data { get; set; } = null!;
 }

@@ -16,6 +16,7 @@ internal class Dialogs
     public static void Information(Control owner, string heading, string buttonText = "Ok")
     {
 
+        
         TaskDialogButton okayButton = new(buttonText);
 
         TaskDialogPage page = new()

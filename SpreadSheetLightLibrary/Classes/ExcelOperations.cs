@@ -38,7 +38,7 @@ public class ExcelOperations
     }
 
     /// <summary>
-    /// Add a new sheet if it does not currently exists.
+    /// Add a new sheet if it does not currently exist.
     /// </summary>
     /// <param name="fileName"></param>
     /// <param name="sheetName"></param>
@@ -185,7 +185,7 @@ public class ExcelOperations
 
 
             using SLDocument document = new();
-            var headerStyle = HeaderStye(document);
+            var headerStyle = HeaderStyle(document);
             var sheets = document.GetSheetNames(false);
             if (sheets.Any(workSheetName => string.Equals(workSheetName, pSheetName, StringComparison.CurrentCultureIgnoreCase)))
             {
@@ -235,7 +235,7 @@ public class ExcelOperations
     }
 
     /// <summary>
-    /// demonstrate how to get used columns in the format a a letter rather than an integer
+    /// demonstrate how to get used columns in the format a letter rather than an integer
     /// </summary>
     /// <returns></returns>
     public string[] UsedCellsInWorkSheet(string fileName, string sheetName)
@@ -290,7 +290,7 @@ public class ExcelOperations
     }
 
 
-    public static SLStyle HeaderStye(SLDocument document)
+    public static SLStyle HeaderStyle(SLDocument document)
     {
 
         SLStyle headerStyle = document.CreateStyle();

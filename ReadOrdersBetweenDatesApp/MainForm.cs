@@ -27,7 +27,7 @@ public partial class MainForm : Form
         BindingNavigator1.AboutItemButton.Click += AboutItemButton_Click;
         BindingNavigator1.CurrentItemButton.Click += CurrentItemButton_Click;
 
-        //OrdersCsvExporter.ExportOrdersToCsv("output.csv");
+        OrdersCsvExporter.ExportOrdersToCsv(FileSettings.Instance.FileName);
 
         if (!ImportOrders())
         {
@@ -49,7 +49,7 @@ public partial class MainForm : Form
             var dgv = sender as DataGridView;
             if (dgv.Columns[e.ColumnIndex].Name != nameof(OrdersResults.Process)) return;
             DataGridViewCell changedCell = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                
+
             /*
             * 
             */
@@ -154,10 +154,38 @@ public partial class MainForm : Form
         DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
         dataGridView1.FixHeaders();
         dataGridView1.ExpandColumns();
-       
+
 
         return true;
 
+    }
+
+    /// <summary>
+    /// Processes the selected orders from the data source, filters them based on the 
+    /// <see cref="OrdersResults.Process"/> property, and logs their details to the debug output.
+    /// </summary>
+    private void ProcessButton_Click(object sender, EventArgs e)
+    {
+        List<OrderResult> selected = _ordersBindingSource.List
+            .Cast<OrdersResults>()
+            .Where(o => o.Process)
+            .Select(o => new OrderResult(
+                o.OrderID, 
+                o.OrderDate, 
+                o.RequiredDate, 
+                o.ShippedDate,
+                o.ShipAddress, 
+                o.ShipCity, 
+                o.ShipPostalCode, 
+                o.ShipCountry, 
+                o.CompanyName))
+            .ToList();
+
+        foreach (var (id, ordered, requiredBy, shipped, _, _, _, _, company) in selected)
+        {
+            Debug.WriteLine($"{id} {ordered} {requiredBy} {shipped} {company}");
+        }
+  
     }
 
     private void ExitAppButton_Click(object sender, EventArgs e)

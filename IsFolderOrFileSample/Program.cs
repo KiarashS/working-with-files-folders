@@ -28,6 +28,12 @@ internal class Program
                 AnsiConsole.MarkupLine($"[white]{item}[/] [red]not found[/]");
             }
         }
+        
+        
+        for (var index = 0; index < items.Count; index++)
+        {
+            var item = items[index];
+        }
 
         Console.ReadLine();
     }

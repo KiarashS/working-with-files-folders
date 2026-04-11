@@ -22,6 +22,6 @@ internal class SqlStatements
         FROM Orders AS O
         INNER JOIN Customers AS C
             ON O.CustomerIdentifier = C.CustomerIdentifier
-        WHERE O.OrderDate BETWEEN @StartDate AND @EndDate;
+        ---WHERE O.OrderDate BETWEEN @StartDate AND @EndDate;
         """;
 }

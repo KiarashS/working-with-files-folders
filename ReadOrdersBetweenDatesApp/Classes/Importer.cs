@@ -46,13 +46,15 @@ public class Importer
     public static (List<OrdersResults> validOrders, List<int> badLineNumbers) Execute(string filePath = "output.csv")
     {
         List<int> badLineNumbers = [];
-        
+
         if (!File.Exists(filePath))
+        {
             throw new FileNotFoundException($"File not found: {filePath}");
+        }
 
         var results = new List<OrdersResults>();
-        
-        var lines = File.ReadAllLines(filePath);
+
+        string[] lines = File.ReadAllLines(filePath);
 
         foreach ((int Index, string line) in lines.Index())
         {
@@ -86,7 +88,7 @@ public class Importer
                 badLineNumbers.Add(Index);
                 continue;
             }
-            
+
             // Try parsing ShippedDate, allowing for potential null or invalid date entries
             if (!DateOnly.TryParse(columns[3], CultureInfo.InvariantCulture, out var shippedDate))
             {
@@ -94,7 +96,7 @@ public class Importer
                 continue;
             }
 
-            
+
             var order = new OrdersResults
             {
                 Process = false,
@@ -114,13 +116,13 @@ public class Importer
 
         badLineNumbers = badLineNumbers.Distinct().ToList();
 
-        if (badLineNumbers.Count >0)
+        if (badLineNumbers.Count > 0)
         {
             Log.Information("Imported orders from {F} with {BL} bad lines.", filePath, string.Join(", ", badLineNumbers));
         }
 
         return (results, badLineNumbers.Distinct().ToList());
     }
-    
-    
+
+
 }

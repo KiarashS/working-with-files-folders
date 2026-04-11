@@ -54,6 +54,9 @@
 	  <None Update="appsettings.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
+	  <None Update="CSV\dummy.csv">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	  <None Update="data.csv">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
@@ -64,6 +67,7 @@
 
 
 	<ItemGroup>
+	  <Folder Include="CSV\" />
 	  <Folder Include="Statements\" />
 	</ItemGroup>
 

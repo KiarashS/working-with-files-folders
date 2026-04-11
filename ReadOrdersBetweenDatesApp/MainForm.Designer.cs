@@ -33,6 +33,7 @@ partial class MainForm
         panel1 = new Panel();
         ExitAppButton = new Button();
         dataGridView1 = new DataGridView();
+        ProcessButtom = new Button();
         (BindingNavigator1).BeginInit();
         panel1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -49,6 +50,7 @@ partial class MainForm
         // 
         // panel1
         // 
+        panel1.Controls.Add(ProcessButtom);
         panel1.Controls.Add(ExitAppButton);
         panel1.Dock = DockStyle.Bottom;
         panel1.Location = new Point(0, 396);
@@ -77,6 +79,16 @@ partial class MainForm
         dataGridView1.Size = new Size(1717, 369);
         dataGridView1.TabIndex = 2;
         // 
+        // ProcessButtom
+        // 
+        ProcessButtom.Location = new Point(12, 13);
+        ProcessButtom.Name = "ProcessButtom";
+        ProcessButtom.Size = new Size(94, 29);
+        ProcessButtom.TabIndex = 3;
+        ProcessButtom.Text = "Process";
+        ProcessButtom.UseVisualStyleBackColor = true;
+        ProcessButtom.Click += ProcessButton_Click;
+        // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
@@ -102,4 +114,5 @@ partial class MainForm
     private Panel panel1;
     private DataGridView dataGridView1;
     private Button ExitAppButton;
+    private Button ProcessButtom;
 }
